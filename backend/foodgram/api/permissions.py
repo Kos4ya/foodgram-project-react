@@ -11,8 +11,8 @@ class IsAuthorOrAdminOrReadOnly(permissions.BasePermission):
         if (request.method in ['PUT', 'PATCH', 'DELETE']
                 and not request.user.is_anonymous):
             return (
-                    request.user == obj.author
-                    or request.user.is_staff
-                    or request.user.is_superuser
+                request.user == obj.author
+                or request.user.is_staff
+                or request.user.is_superuser
             )
         return request.method in permissions.SAFE_METHODS
