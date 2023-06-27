@@ -4,6 +4,8 @@ from django.db.models import UniqueConstraint
 
 from users.models import User
 
+from recipes.validators import hex_color_validator
+
 
 class Ingredient(models.Model):
     """ Модель ингредиента. """
@@ -24,7 +26,9 @@ class Tag(models.Model):
     """ Модель тега. """
 
     name = models.CharField('Название тега', unique=True, max_length=200)
-    color = models.CharField('Цвет', unique=True, max_length=7)
+    color = models.CharField('Цвет', unique=True,
+                             validators=[hex_color_validator],
+                             max_length=7)
     slug = models.SlugField('Slug', unique=True, max_length=200)
 
     class Meta:
@@ -65,7 +69,7 @@ class Recipe(models.Model):
         'Описание рецепта',
         help_text='Введите описание рецепта'
     )
-    cooking_time = models.IntegerField(
+    cooking_time = models.PositiveSmallIntegerField(
         'Время приготовления',
         validators=[MinValueValidator(1)]
     )
@@ -96,7 +100,7 @@ class RecipeIngredient(models.Model):
         on_delete=models.CASCADE,
         verbose_name='Ингредиент'
     )
-    amount = models.IntegerField(
+    amount = models.PositiveSmallIntegerField(
         'Количество',
         validators=[MinValueValidator(1)]
     )

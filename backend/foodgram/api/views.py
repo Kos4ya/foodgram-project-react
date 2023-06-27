@@ -14,7 +14,7 @@ from users.models import Subscription, User
 
 from .filters import IngredientFilter, RecipeFilter
 from .pagination import CustomPagination
-from .permissions import IsAuthorOrAdminOrReadOnly
+from .permissions import IsAuthorOrReadOnly, IsAdminOrReadOnly
 from .serializers import (CreateRecipeSerializer, FavoriteSerializer,
                           IngredientSerializer, RecipeSerializer,
                           ShoppingCartSerializer, ShowSubscriptionsSerializer,
@@ -35,7 +35,7 @@ class SubscribeView(APIView):
             data=data,
             context={'request': request}
         )
-        if serializer.is_valid():
+        if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
@@ -116,7 +116,7 @@ class IngredientViewSet(viewsets.ReadOnlyModelViewSet):
 
 class RecipeViewSet(viewsets.ModelViewSet):
 
-    permission_classes = [IsAuthorOrAdminOrReadOnly, ]
+    permission_classes = [IsAuthorOrReadOnly, IsAdminOrReadOnly]
     pagination_class = CustomPagination
     queryset = Recipe.objects.all()
     filter_backends = [DjangoFilterBackend, ]
