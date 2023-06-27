@@ -2,8 +2,6 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models import UniqueConstraint
 
-from .validators import validate_username
-
 
 class User(AbstractUser):
     email = models.EmailField('email', max_length=254, unique=True)

@@ -3,7 +3,7 @@ from string import hexdigits
 from django.core.exceptions import ValidationError
 
 
-def hex_color_validator(color: str) -> str:
+def hex_color_validator(color):
     color = color.strip(" #")
     if len(color) not in (3, 6):
         raise ValidationError(
