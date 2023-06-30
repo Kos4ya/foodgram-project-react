@@ -6,7 +6,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG') == 'True'
 
-ALLOWED_HOSTS = ['localhost', '130.193.34.207']
+ALLOWED_HOSTS = ['localhost', 'myhostsdfa.bounceme.net', '130.193.34.207']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
