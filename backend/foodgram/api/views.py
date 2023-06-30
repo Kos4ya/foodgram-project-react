@@ -15,7 +15,7 @@ from users.models import Subscription, User
 
 from .filters import IngredientFilter, RecipeFilter
 from .pagination import CustomPagination
-from .permissions import IsAuthorOrReadOnly, IsAdminOrReadOnly
+from .permissions import IsAuthorOrReadOnly
 from .serializers import (CreateRecipeSerializer, FavoriteSerializer,
                           IngredientSerializer, RecipeSerializer,
                           ShoppingCartSerializer, ShowSubscriptionsSerializer,
