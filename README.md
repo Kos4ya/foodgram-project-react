@@ -2,7 +2,7 @@
 
 версия c Docker, Continuous Integration на GitHub Actions
 
-развернут по адресу http://130.193.34.207/ admin login 
+развернут по адресу http://130.193.34.207/ admin login 1@m.ru password - 1
 
 ![workflow](https://github.com/sarvilin/foodgram-project-react/actions/workflows/main.yml/badge.svg)
 
