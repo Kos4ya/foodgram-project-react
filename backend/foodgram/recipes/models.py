@@ -44,6 +44,7 @@ class Recipe(models.Model):
 
     tags = models.ManyToManyField(
         Tag,
+        editable=True,
         through='RecipeTag',
         verbose_name='Теги',
         related_name='tags'
