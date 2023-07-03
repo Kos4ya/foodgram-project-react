@@ -74,7 +74,7 @@ class FavoriteView(APIView):
             'user': request.user.id,
             'recipe': id
         }
-        if not Favorite.objects.get_or_create(user=request.user, recipe__id=id).exists():
+        if Favorite.objects.get_or_create(user=request.user, recipe__id=id):
             serializer = FavoriteSerializer(
                 data=data, context={'request': request}
             )
