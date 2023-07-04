@@ -74,10 +74,7 @@ class FavoriteView(APIView):
             'user': request.user.id,
             'recipe': id
         }
-        obj, created = Favorite.objects.get_or_create(
-            user=request.user,
-            recipe__id=id
-        )
+        created = Favorite.objects.get_or_create(user=request.user, recipe__id=id)[1]
         if created:
             serializer = FavoriteSerializer(
                 data=data, context={'request': request}
