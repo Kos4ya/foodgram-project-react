@@ -74,19 +74,14 @@ class FavoriteView(APIView):
             'user': request.user.id,
             'recipe': id
         }
-        # Вы сказали поменять с фильтрации на get_or_create.
-        # Этот метод дает два значения, второй это параметр created.
-        # Я построил на нем проверку, но ошибка осталась.
-        # Могли бы вы направить в правильном направлении? Спасибо
-        created = Favorite.objects.get_or_create(
+
+        _, created = Favorite.objects.get_or_create(
             user=request.user,
             recipe__id=id)[1]
         if created:
             serializer = FavoriteSerializer(
                 data=data, context={'request': request}
             )
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
             return Response(
                 serializer.data, status=status.HTTP_201_CREATED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
