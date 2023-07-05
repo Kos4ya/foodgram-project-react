@@ -82,6 +82,7 @@ class FavoriteView(APIView):
             serializer = FavoriteSerializer(
                 data=data, context={'request': request}
             )
+            serializer.is_valid(raise_exception=True)
             return Response(
                 serializer.data, status=status.HTTP_201_CREATED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
