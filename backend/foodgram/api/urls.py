@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from .views import (IngredientViewSet, RecipeViewSet,
+from .views import (FavoriteView, IngredientViewSet, RecipeViewSet,
                     ShoppongCartView, ShowSubscriptionsView, SubscribeView,
                     TagViewSet, download_shopping_cart)
 
@@ -23,6 +23,11 @@ urlpatterns = [
         'recipes/<int:id>/shopping_cart/',
         ShoppongCartView.as_view(),
         name='shopping_cart'
+    ),
+    path(
+        'recipes/<int:id>/favorite/',
+        FavoriteView.as_view(),
+        name='favorite'
     ),
     path(
         'users/<int:id>/subscribe/',
